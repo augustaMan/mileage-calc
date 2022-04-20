@@ -20,7 +20,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class MileageCalculatorNoConversion extends Application {
+public class PAssign08 extends Application {
 	// default values/strings
 	private double txtWidth = 125.0;
 	private String defaultCalc = String.format("%.2f", 0.00);
