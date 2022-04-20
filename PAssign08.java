@@ -108,22 +108,21 @@ public class PAssign08 extends Application {
 	private void unitConversion(String format) {
 		double distance = Double.parseDouble(tfDistance.getText());
 		double capacity = Double.parseDouble(tfCapacity.getText());
-		double result = Double.parseDouble(tfResult.getText());
 
 		if (format == altResult) {
 			distance *= 1.60934;
 			capacity *= 3.78541;
-			result = 100 * capacity / distance;
+			
 		} else {
 			distance *= 0.621371;
 			capacity *= 0.264172;
-			result = distance / capacity;
 
 		}
 
 		tfDistance.setText(String.format("%.2f", distance));
 		tfCapacity.setText(String.format("%.2f", capacity));
-		tfResult.setText(String.format("%.2f", result));
+		calcMileage();
+		
 	}
 
 	private void changeLabels() {
