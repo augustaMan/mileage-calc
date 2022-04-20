@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
@@ -105,13 +104,39 @@ public class PAssign08 extends Application {
 	 * Convert existing figures and recalculate This needs to be separate to avoid
 	 * converting when the conversion is not necessary
 	 */
+
+	private void unitConversion(String format) {
+		double distance = Double.parseDouble(tfDistance.getText());
+		double capacity = Double.parseDouble(tfCapacity.getText());
+		double result = Double.parseDouble(tfResult.getText());
+
+		if (format == altResult) {
+			distance *= 1.60934;
+			capacity *= 3.78541;
+			result = 100 * capacity / distance;
+		} else {
+			distance *= 0.621371;
+			capacity *= 0.264172;
+			result = distance / capacity;
+
+		}
+
+		tfDistance.setText(String.format("%.2f", distance));
+		tfCapacity.setText(String.format("%.2f", capacity));
+		tfResult.setText(String.format("%.2f", result));
+	}
+
 	private void changeLabels() {
 		// distinguish between L/100KM and MPG
 		if (cbo.getValue() == altResult) {
+			unitConversion(altResult);
+
 			lblCapacity.setText(altCapacity);
 			lblDistance.setText(altMileage);
 			lblResult.setText(altResult);
+
 		} else {
+			unitConversion(defaultResult);
 			lblCapacity.setText(defaultCapacity);
 			lblDistance.setText(defaultMileage);
 			lblResult.setText(defaultResult);
